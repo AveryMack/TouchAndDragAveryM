@@ -9,13 +9,16 @@
 
 -- Your code here
 
+-- hide the status bar
+display.setStatusBar(display.HiddenStatusBar)
+
 -- local variables. I am still trying to get the x-value to be set properly
 local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
 local catGirl = display.newImageRect("Images/girl4.png", 150, 150)
 local catGirlWidth = catGirl.width
 local catGirlHeight = catGirl.height
 
-local starGirl = display.newImageRect("Images/starGirl.png", 150, 150)
+local starGirl = display.newImageRect("Images/girl5.png", 150, 150)
 local starGirlWidth = starGirl.width
 local starGirlHeight = starGirl.height
 
@@ -47,7 +50,17 @@ local function BlueGirlListener(touch)
 		starGirl.y = touch.y
 	end
 
-	if 
+	if (touch.phase == "ended") then
+		alreadyTouchedStarGirl = false 
+		alreadyTouchedCatGirl = false
+	end
+end
+
+-- add the respective listeners to each object
+starGirl:addEventListener("touch", StarGirlListener)
+
+
+
 
 
 
