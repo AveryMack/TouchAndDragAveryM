@@ -12,23 +12,16 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
-<<<<<<< HEAD
--- local variables. I am still trying to get the x-value to be set properly
-=======
--- display background image
->>>>>>> 50fcdbf63bddf3732f71503529b9744409c6c17c
+-- set the background image 
 local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
 
--- local variables. I am still trying to get the x-value to be set properly
-local backgroundImage = display.newImageRect("Images/16.png", 2048, 1536)
+-- local Variables. I am still trying to get the x-value to be set properly
+local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
 local catGirl = display.newImageRect("Images/girl4.png", 150, 150)
 local catGirlWidth = catGirl.width
 local catGirlHeight = catGirl.height
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 50fcdbf63bddf3732f71503529b9744409c6c17c
 local starGirl = display.newImageRect("Images/girl5.png", 150, 150)
 local starGirlWidth = starGirl.width
 local starGirlHeight = starGirl.height
@@ -44,15 +37,15 @@ starGirl.y = 500
 catGirl.x = 300
 catGirl.y = 200
 
--- Function: Octopus
+-- Function: starGirl
 -- Input: touch listener
 -- Output: none
 -- Description: when starGirl is touched, move her 
 local function starGirlListener(touch)
 
 	if (touch.phase == "began") then
-		if (alreadyTouchedCatGirl == false) then
-			alreadyTouchedStarGirl = true
+		if (alreadyTouchedcatGirl == false) then
+			alreadyTouchedstarGirl = true
 		end
 	end
 
@@ -61,32 +54,41 @@ local function starGirlListener(touch)
 	   starGirl.y = touch.y
 	end
 
-<<<<<<< HEAD
-	if (touch.phase == "ended") then
-		alreadyTouchedStarGirl = false 
-		alreadyTouchedCatGirl = false
-	end
-end
-
--- add the respective listeners to each object
-starGirl:addEventListener("touch", StarGirlListener)
-
-
-
-
-
-
-
-
-
-
-=======
 	if (touch.phase == "ended") then 
 		alreadyTouchedStarGirl = false
 		alreadyTouchedCatGirl = false
 	end
 end
->>>>>>> 50fcdbf63bddf3732f71503529b9744409c6c17c
 
 -- add the respective listeners to each object
 starGirl:addEventListener("touch", starGirlListener)
+
+-- Function: catGirl
+-- Input: touch listener
+-- Output: none
+-- Description: when catGirl is touched, move her 
+local function catGirlListener(touch)
+
+	if (touch.phase == "began") then
+		if (alreadyTouchedstarGirl == false) then
+			alreadyTouchedcatGirl = true
+		end
+	end
+
+	if ( (touch.phase == "moved" ) and (alreadyTouchedCatGirl == true) ) then 
+	   catGirl.x = touch.x
+	   catGirl.y = touch.y
+	end
+
+	if (touch.phase == "ended") then 
+		alreadyTouchedCatGirl = false
+		alreadyTouchedStarGirl = false
+	end
+end
+
+-- add the respective listeners to each object
+catGirl:addEventListener("touch", catGirlListener)
+
+
+
+
