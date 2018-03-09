@@ -12,83 +12,76 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- set the background image 
-local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
-
 -- local Variables. I am still trying to get the x-value to be set properly
 local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
-local catGirl = display.newImageRect("Images/girl4.png", 150, 150)
-local catGirlWidth = catGirl.width
-local catGirlHeight = catGirl.height
+local blueGirl = display.newImageRect("Images/girl5.png", 150, 150)
+local blueGirlWidth = blueGirl.width
+local blueGirlHeight = blueGirl.height
 
 
-local starGirl = display.newImageRect("Images/girl5.png", 150, 150)
-local starGirlWidth = starGirl.width
-local starGirlHeight = starGirl.height
+local cat = display.newImageRect("Images/girl4.png", 150, 150)
+local catWidth = cat.width
+local catHeight = cat.height
 
 -- my boolean variables to keep track of which object i touched first
-local alreadyTouchedStarGirl = false
-local alreadyTouchedCatGirl = false
+local alreadyTouchedcat = false
+local alreadyTouchedblueGirl = false
 
 -- set the initial x and y position of myImage
-starGirl.x = 400
-starGirl.y = 500
+cat.x = 400
+cat.y = 500
 
-catGirl.x = 300
-catGirl.y = 200
+blueGirl.x = 300
+blueGirl.y = 200
 
--- Function: starGirl
+-- Function: Cat
 -- Input: touch listener
 -- Output: none
--- Description: when starGirl is touched, move her 
-local function starGirlListener(touch)
+-- Description: when cat is touched, move her 
+local function catListener(touch)
 
 	if (touch.phase == "began") then
-		if (alreadyTouchedcatGirl == false) then
-			alreadyTouchedstarGirl = true
+		if (alreadyTouchedblueGirl == false) then
+			alreadyTouchedcat = true
 		end
 	end
 
-	if ( (touch.phase == "moved" ) and (alreadyTouchedStarGirl == true) ) then 
-	   starGirl.x = touch.x
-	   starGirl.y = touch.y
+	if ( (touch.phase == "moved" ) and (alreadyTouchedcat == true) ) then 
+	   cat.x = touch.x
+	   cat.y = touch.y
 	end
 
 	if (touch.phase == "ended") then 
-		alreadyTouchedStarGirl = false
-		alreadyTouchedCatGirl = false
+		alreadyTouchedcat = false
+		alreadyTouchedblueGirl = false
 	end
 end
 
 -- add the respective listeners to each object
-starGirl:addEventListener("touch", starGirlListener)
+cat:addEventListener("touch", catListener)
 
--- Function: catGirl
+-- Function: BlueGirl
 -- Input: touch listener
 -- Output: none
--- Description: when catGirl is touched, move her 
-local function catGirlListener(touch)
+-- Description: when blueGirl is touched, move her 
+local function blueGirlListener(touch)
 
 	if (touch.phase == "began") then
-		if (alreadyTouchedstarGirl == false) then
-			alreadyTouchedcatGirl = true
+		if (alreadyTouchedcat == true) then
+			alreadyTouchedblueGirl = false
 		end
 	end
 
-	if ( (touch.phase == "moved" ) and (alreadyTouchedCatGirl == true) ) then 
-	   catGirl.x = touch.x
-	   catGirl.y = touch.y
+	if ( (touch.phase == "moved" ) and (alreadyTouchedblueGirl == false) ) then 
+	   blueGirl.x = touch.x
+	   blueGirl.y = touch.y
 	end
 
 	if (touch.phase == "ended") then 
-		alreadyTouchedCatGirl = false
-		alreadyTouchedStarGirl = false
+		alreadyTouchedblueGirl = false
+		alreadyTouchedcat = false
 	end
 end
 
 -- add the respective listeners to each object
-catGirl:addEventListener("touch", catGirlListener)
-
-
-
-
+blueGirl:addEventListener("touch", blueGirlListener)
